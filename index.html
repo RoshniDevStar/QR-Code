@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gradient-to-r from-blue-800 via-pink-800 to-green-500">
+    <div class="flex justify-center items-center h-screen">
+
+        <div class="max-w-md mx-auto bg-white rounded-lg shadow-lg overflow-hidden h-100 shadow-lg transform transition-transform hover:scale-105">
+        <p class="text-black font-bold text-center pt-2"> QR Code Generator </p>
+            <div class="container py-2 px-2">
+                <input type="text" name="user" id="userName"
+                    class="w-80 h-10 px-3 py-2 text-neutral-300 border rounded-lg" /><br>
+                <button type="button" id="button"
+                    class="w-auto bg-blue-700 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded mt-2">Save</button>
+            </div>
+            <div class="font-bold text-black flex justify-center items-center pt-4">
+                <img src="" width="200px" height="200px" alt="No Qr Code Available" id="qr-img" />
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    let button = document.querySelector('button');
+    button.addEventListener('click', function (e) {
+        e.preventDefault();
+        let userName = document.querySelector('#userName').value;
+        console.log(userName);
+        let result = document.getElementById('resultOfqr');
+        let qrImage = document.querySelector('#qr-img');
+        console.log(qrImage, "qrImage");
+        qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${userName}`
+        result.appendChild(qrImage);
+    })
+
+</script>
+
+</html>
